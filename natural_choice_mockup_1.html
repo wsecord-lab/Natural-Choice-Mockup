@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Natural Choice — Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#111;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid #e8e8e8;background:#fff;position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;}
+.nav-emblem{width:36px;height:36px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;}
+.nav-emblem svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.5;}
+.nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:#111;line-height:1;}
+.nav-wordmark span{color:#c0392b;}
+.nav-wordmark small{display:block;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#aaa;font-weight:400;}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:12px;color:#888;text-decoration:none;letter-spacing:.5px;text-transform:uppercase;cursor:pointer;padding-bottom:2px;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+.nav-links a:hover{color:#c0392b;}
+.nav-links a.active{color:#111;border-bottom:2px solid #c0392b;}
+.nav-book{background:#c0392b;color:#fff;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:10px 22px;border:none;cursor:pointer;}
+.page{display:none;}
+.page.active{display:block;}
+.hero{position:relative;overflow:hidden;}
+.hero-img{height:520px;background:#1c1c1c;display:flex;align-items:center;justify-content:center;}
+.hero-ph{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+.hero-ph-box{width:68px;height:68px;border:1px solid #333;display:flex;align-items:center;justify-content:center;}
+.hero-ph-box svg{width:28px;height:28px;stroke:#444;fill:none;stroke-width:1.5;}
+.hero-ph p{font-size:11px;color:#3a3a3a;letter-spacing:1px;text-transform:uppercase;}
+.hero-ph-note{font-size:10px;color:#c0392b;font-style:italic;}
+.hero-overlay{position:absolute;top:0;left:0;right:0;height:520px;background:linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.28) 55%,transparent 100%);}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:36px 48px 48px;}
+.hero-est{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#c0392b;margin-bottom:10px;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:88px;line-height:.9;letter-spacing:3px;color:#fff;}
+.hero-rule{width:48px;height:2px;background:#c0392b;margin:18px 0;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.6);font-weight:300;}
+.hero-ctas{display:flex;gap:10px;margin-top:24px;}
+.btn-red{background:#c0392b;color:#fff;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:13px 30px;border:none;cursor:pointer;}
+.btn-ghost{background:transparent;color:#fff;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:13px 30px;border:1px solid rgba(255,255,255,.3);cursor:pointer;}
+.info-strip{background:#111;display:grid;grid-template-columns:repeat(4,1fr);}
+.info-item{padding:18px 28px;border-right:1px solid #222;}
+.info-item:last-child{border:none;}
+.info-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:4px;}
+.info-val{font-size:13px;font-weight:500;color:#f0ede6;}
+.sec{padding:64px 48px;}
+.sec-alt{background:#f7f6f3;}
+.eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:8px;}
+.sec-h{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:1px;line-height:1;color:#111;margin-bottom:10px;}
+.rule{width:36px;height:2px;background:#c0392b;margin-bottom:32px;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:start;}
+.body{font-size:14px;color:#666;line-height:1.9;font-weight:300;}
+.body+.body{margin-top:14px;}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}
+.stat{border:1px solid #ebebeb;padding:20px;background:#fff;}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:52px;color:#c0392b;line-height:1;}
+.stat-l{font-size:11px;color:#bbb;margin-top:3px;letter-spacing:.5px;}
+.hiring{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #ebebeb;padding:16px 20px;margin-top:20px;background:#fff;}
+.hiring-badge{background:#c0392b;color:#fff;font-size:9px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;white-space:nowrap;}
+.hiring-text{font-size:13px;color:#999;font-weight:300;}
+.hiring-link{font-size:11px;color:#c0392b;white-space:nowrap;cursor:pointer;}
+.about-photos{display:flex;flex-direction:column;gap:4px;}
+.photo-ph{background:#ece9e3;border:1px solid #e0ddd8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+.photo-ph svg{width:22px;height:22px;stroke:#ccc;fill:none;stroke-width:1.5;}
+.photo-ph-label{font-size:10px;color:#bbb;letter-spacing:1px;text-transform:uppercase;}
+.photo-ph-note{font-size:10px;color:#c0392b;font-style:italic;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #ebebeb;margin-top:32px;background:#fff;}
+.svc{padding:26px;border-right:1px solid #ebebeb;border-bottom:1px solid #ebebeb;}
+.svc:nth-child(3n){border-right:none;}
+.svc:nth-last-child(-n+3){border-bottom:none;}
+.svc-name{font-size:14px;font-weight:500;color:#111;margin-bottom:4px;}
+.svc-time{font-size:11px;color:#bbb;}
+.svc-price{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#c0392b;margin-top:10px;}
+.svc-book{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#c0392b;letter-spacing:1px;text-transform:uppercase;margin-top:10px;cursor:pointer;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:32px;}
+.team-card{border:1px solid #ebebeb;overflow:hidden;background:#fff;}
+.team-photo{height:160px;background:#ece9e3;display:flex;align-items:center;justify-content:center;}
+.team-init{width:52px;height:52px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:16px;color:#fff;}
+.team-info{padding:14px;border-top:1px solid #ebebeb;}
+.team-name{font-size:13px;font-weight:500;color:#111;}
+.team-role{font-size:11px;color:#bbb;margin-top:2px;}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:32px;}
+.gal{background:#e8e4de;aspect-ratio:1;display:flex;align-items:center;justify-content:center;}
+.gal.wide{grid-column:span 2;aspect-ratio:2/1;}
+.gal svg{width:20px;height:20px;stroke:#bbb;fill:none;stroke-width:1.5;}
+.book-cta{background:#111;padding:64px 48px;text-align:center;}
+.book-cta-eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#444;margin-bottom:10px;}
+.book-cta-title{font-family:'Bebas Neue',sans-serif;font-size:58px;letter-spacing:2px;color:#fff;}
+.book-cta-sub{font-size:14px;color:#555;margin-top:8px;font-weight:300;}
+.book-btn{display:inline-flex;align-items:center;gap:8px;margin-top:28px;background:#c0392b;color:#fff;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:14px 38px;border:none;cursor:pointer;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:52px;margin-top:32px;}
+.contact-rows{display:flex;flex-direction:column;gap:20px;}
+.contact-row{display:flex;gap:14px;align-items:flex-start;}
+.c-icon{width:36px;height:36px;border:1px solid #ebebeb;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.c-icon svg{width:16px;height:16px;stroke:#c0392b;fill:none;stroke-width:1.5;}
+.c-label{font-size:10px;color:#bbb;letter-spacing:1.5px;text-transform:uppercase;}
+.c-val{font-size:13px;color:#111;margin-top:2px;line-height:1.6;}
+.form{display:flex;flex-direction:column;gap:10px;}
+.form input,.form textarea{background:#f7f6f3;border:1px solid #e8e8e8;color:#111;font-family:'DM Sans',sans-serif;font-size:13px;padding:12px 14px;outline:none;width:100%;}
+.form textarea{height:100px;resize:none;}
+.form input::placeholder,.form textarea::placeholder{color:#ccc;}
+.form-btn{background:#c0392b;color:#fff;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:13px;border:none;cursor:pointer;width:100%;}
+footer{background:#111;padding:28px 48px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:#444;}
+.footer-logo span{color:#c0392b;}
+.footer-copy{font-size:11px;color:#3a3a3a;}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:11px;color:#555;text-decoration:none;cursor:pointer;}
+.note{font-size:11px;color:#bbb;font-style:italic;margin-top:12px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="goTo('home')">
+    <div class="nav-emblem">
+      <svg viewBox="0 0 24 24"><path d="M6 3l3 9M18 3l-3 9M5 15l7-3 7 3M5 15c0 3.3 3.1 6 7 6s7-2.7 7-6"/></svg>
+    </div>
+    <div class="nav-wordmark">The Natural <span>Choice</span><small>Barber Shop &amp; Salon</small></div>
+  </div>
+  <div class="nav-links">
+    <a id="nav-home" onclick="goTo('home')">Home</a>
+    <a id="nav-services" onclick="goTo('services')">Services</a>
+    <a id="nav-team" onclick="goTo('team')">Our Team</a>
+    <a id="nav-gallery" onclick="goTo('gallery')">Gallery</a>
+    <a id="nav-contact" onclick="goTo('contact')">Contact</a>
+  </div>
+  <button class="nav-book" onclick="goTo('contact')">Book Now</button>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-img">
+      <div class="hero-ph">
+        <div class="hero-ph-box"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+        <p>Interior shop photo</p>
+        <p class="hero-ph-note">Red walls · barber chairs · checkered floor</p>
+      </div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-est">Established 1997 · Oakland, Pittsburgh</p>
+      <div class="hero-title">The Natural<br>Choice</div>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">109-111 Meyran Ave &nbsp;·&nbsp; Barber Shop &amp; Natural Hair Salon</p>
+      <div class="hero-ctas">
+        <button class="btn-red" onclick="goTo('contact')">Book an Appointment</button>
+        <button class="btn-ghost" onclick="goTo('services')">View Services</button>
+      </div>
+    </div>
+  </div>
+  <div class="info-strip">
+    <div class="info-item"><div class="info-label">Address</div><div class="info-val">109-111 Meyran Ave, Pittsburgh PA 15213</div></div>
+    <div class="info-item"><div class="info-label">Phone</div><div class="info-val">(412) 681-7746</div></div>
+    <div class="info-item"><div class="info-label">Hours</div><div class="info-val">Mon 11am–5pm · Tues–Sat 10am–6pm</div></div>
+    <div class="info-item"><div class="info-label">Book online</div><div class="info-val">Squire — choose your barber</div></div>
+  </div>
+  <section class="sec">
+    <p class="eyebrow">Our story</p>
+    <div class="about-grid">
+      <div>
+        <h2 class="sec-h">Rooted in Oakland<br>Since 1997</h2>
+        <div class="rule"></div>
+        <p class="body">The Natural Choice has been a fixture at 109 Meyran Ave for nearly three decades. What started as a small neighborhood shop has grown into one of Oakland's most trusted spots for precision fades, clean lines, and natural hair care.</p>
+        <p class="body">We've had the privilege of shaping up generations of students, locals, and everyone in between. Walk-ins welcome — appointments always preferred.</p>
+        <div class="stats">
+          <div class="stat"><div class="stat-n">28</div><div class="stat-l">Years on Meyran Ave</div></div>
+          <div class="stat"><div class="stat-n">4</div><div class="stat-l">Expert barbers &amp; stylists</div></div>
+        </div>
+        <div class="hiring">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="hiring-badge">Now Hiring</span>
+            <span class="hiring-text">We're looking for skilled barbers to join the team.</span>
+          </div>
+          <span class="hiring-link" onclick="goTo('contact')">Apply →</span>
+        </div>
+      </div>
+      <div class="about-photos">
+        <div class="photo-ph" style="height:220px;">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg>
+          <p class="photo-ph-label">Interior photo</p>
+          <p class="photo-ph-note">Red walls, barber chairs</p>
+        </div>
+        <div class="photo-ph" style="height:148px;">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg>
+          <p class="photo-ph-label">Storefront exterior</p>
+          <p class="photo-ph-note">111 Meyran Ave signage</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">The Natural <span>Choice</span></div>
+    <div class="footer-copy">© 2025 The Natural Choice Barber Shop &amp; Natural Hair Salon · Pittsburgh, PA</div>
+    <div class="footer-links"><a>Instagram</a><a>Facebook</a><a onclick="goTo('contact')">Book Online</a></div>
+  </footer>
+</div>
+
+<!-- SERVICES -->
+<div class="page" id="page-services">
+  <section class="sec">
+    <p class="eyebrow">What we offer</p>
+    <h2 class="sec-h">Services</h2>
+    <div class="rule"></div>
+    <div class="svc-grid">
+      <div class="svc"><div class="svc-name">Men's Regular Haircut</div><div class="svc-time">30 – 90 min</div><div class="svc-price">$40</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+      <div class="svc"><div class="svc-name">Faded Hairstyle</div><div class="svc-time">45 – 60 min</div><div class="svc-price">$35 – $45</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+      <div class="svc"><div class="svc-name">Fade &amp; Line</div><div class="svc-time">45 min</div><div class="svc-price">$35 – $40</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+      <div class="svc"><div class="svc-name">Fade, Line &amp; Beard</div><div class="svc-time">60 – 75 min</div><div class="svc-price">$45</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+      <div class="svc"><div class="svc-name">Kids Fade &amp; Line</div><div class="svc-time">45 – 60 min</div><div class="svc-price">$25 – $35</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+      <div class="svc"><div class="svc-name">Kids Haircut</div><div class="svc-time">60 min</div><div class="svc-price">$30</div><span class="svc-book" onclick="goTo('contact')">Book →</span></div>
+    </div>
+  </section>
+  <div class="book-cta">
+    <p class="book-cta-eyebrow">Ready for a fresh cut?</p>
+    <div class="book-cta-title">Book Your Appointment</div>
+    <p class="book-cta-sub">Schedule through Squire — pick your barber, choose a time, walk in ready.</p>
+    <button class="book-btn" onclick="goTo('contact')">Schedule Now via Squire</button>
+  </div>
+  <footer>
+    <div class="footer-logo">The Natural <span>Choice</span></div>
+    <div class="footer-copy">© 2025 The Natural Choice Barber Shop &amp; Natural Hair Salon · Pittsburgh, PA</div>
+    <div class="footer-links"><a>Instagram</a><a>Facebook</a><a onclick="goTo('contact')">Book Online</a></div>
+  </footer>
+</div>
+
+<!-- TEAM -->
+<div class="page" id="page-team">
+  <section class="sec">
+    <p class="eyebrow">The crew</p>
+    <h2 class="sec-h">Meet the Barbers</h2>
+    <div class="rule"></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-photo"><div class="team-init">DW</div></div><div class="team-info"><div class="team-name">Dre W.</div><div class="team-role">Barber</div></div></div>
+      <div class="team-card"><div class="team-photo"><div class="team-init">MJ</div></div><div class="team-info"><div class="team-name">Mariah J.</div><div class="team-role">Barber &amp; Stylist</div></div></div>
+      <div class="team-card"><div class="team-photo"><div class="team-init">SB</div></div><div class="team-info"><div class="team-name">Sekou B.</div><div class="team-role">Barber</div></div></div>
+      <div class="team-card"><div class="team-photo"><div class="team-init">EY</div></div><div class="team-info"><div class="team-name">Elbro Y.</div><div class="team-role">Barber</div></div></div>
+    </div>
+    <p class="note">Individual photos and bios to be added once provided by Nate.</p>
+  </section>
+  <footer>
+    <div class="footer-logo">The Natural <span>Choice</span></div>
+    <div class="footer-copy">© 2025 The Natural Choice Barber Shop &amp; Natural Hair Salon · Pittsburgh, PA</div>
+    <div class="footer-links"><a>Instagram</a><a>Facebook</a><a onclick="goTo('contact')">Book Online</a></div>
+  </footer>
+</div>
+
+<!-- GALLERY -->
+<div class="page" id="page-gallery">
+  <section class="sec sec-alt">
+    <p class="eyebrow">Our work</p>
+    <h2 class="sec-h">Gallery</h2>
+    <div class="rule"></div>
+    <div class="gal-grid">
+      <div class="gal wide"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+      <div class="gal"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M9 7V5h6v2"/></svg></div>
+    </div>
+    <p class="note">Photos to be pulled from @thenaturalchoicepgh on Instagram and Facebook.</p>
+  </section>
+  <footer>
+    <div class="footer-logo">The Natural <span>Choice</span></div>
+    <div class="footer-copy">© 2025 The Natural Choice Barber Shop &amp; Natural Hair Salon · Pittsburgh, PA</div>
+    <div class="footer-links"><a>Instagram</a><a>Facebook</a><a onclick="goTo('contact')">Book Online</a></div>
+  </footer>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <section class="sec">
+    <p class="eyebrow">Get in touch</p>
+    <h2 class="sec-h">Contact</h2>
+    <div class="rule"></div>
+    <div class="contact-grid">
+      <div class="contact-rows">
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4.4-4.4-7-8-7-11a7 7 0 0114 0c0 3-2.6 6.6-7 11z"/><circle cx="12" cy="10" r="2"/></svg></div>
+          <div><div class="c-label">Address</div><div class="c-val">109-111 Meyran Ave, Pittsburgh, PA 15213</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 2 .7 2.9a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.2-1.2a2 2 0 012.1-.5c.9.3 1.9.6 2.9.7a2 2 0 011.7 2z"/></svg></div>
+          <div><div class="c-label">Phone</div><div class="c-val">(412) 681-7746</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/></svg></div>
+          <div><div class="c-label">Email</div><div class="c-val">naturalchoicehair@gmail.com</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.4a4 4 0 11-7.9 1 4 4 0 017.9-1z"/><circle cx="16.5" cy="7.5" r=".5" fill="#c0392b"/></svg></div>
+          <div><div class="c-label">Instagram</div><div class="c-val">@thenaturalchoicepgh</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
+          <div><div class="c-label">Facebook</div><div class="c-val">The Natural Choice Barber Shop &amp; Natural Hair Salon</div></div>
+        </div>
+        <div class="contact-row">
+          <div class="c-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><div class="c-label">Hours</div><div class="c-val">Mon 11am – 5pm<br>Tues – Sat 10am – 6pm</div></div>
+        </div>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your name">
+        <input type="email" placeholder="Email address">
+        <textarea placeholder="Leave a note or review..."></textarea>
+        <button class="form-btn">Send Message</button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="footer-logo">The Natural <span>Choice</span></div>
+    <div class="footer-copy">© 2025 The Natural Choice Barber Shop &amp; Natural Hair Salon · Pittsburgh, PA</div>
+    <div class="footer-links"><a>Instagram</a><a>Facebook</a><a onclick="goTo('contact')">Book Online</a></div>
+  </footer>
+</div>
+
+<script>
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+  document.getElementById('page-' + page).classList.add('active');
+  var navEl = document.getElementById('nav-' + page);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+goTo('home');
+</script>
+</body>
+</html>
